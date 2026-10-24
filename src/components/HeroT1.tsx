@@ -61,7 +61,7 @@ export default function HeroT1({ data, paleta, bannerActive = false }: Props) {
       {/* ── Background Image with Parallax & Gentle Scale ── */}
       <div className="absolute inset-0 w-full h-full z-0 overflow-hidden">
         <motion.div style={{ y: parallaxY }} className="w-full h-full">
-          <picture className="w-full h-full block">
+          <picture className="w-full h-full block md:scale-[0.80] md:origin-bottom lg:scale-100 lg:origin-center transition-transform duration-500">
             {/* Mobile View (< 768px): Hero-mobile.webp */}
             <source media="(max-width: 767px)" srcSet={mobileImage} />
             {/* Tablet View (768px - 1023px): Hero-tablet.webp */}
@@ -94,7 +94,7 @@ export default function HeroT1({ data, paleta, bannerActive = false }: Props) {
       {/* ── Editorial Content Block (Anchored Bottom on Mobile, Raised on Tablet, Centered on Desktop) ── */}
       <div
         className={`relative z-10 w-full max-w-[1250px] mx-auto px-6 sm:px-12 lg:px-16 h-full flex flex-col justify-end pb-12 pt-32 md:justify-start ${
-          bannerActive ? 'md:pt-36' : 'md:pt-28'
+          bannerActive ? 'md:pt-32' : 'md:pt-24'
         } md:pb-0 lg:justify-center lg:pt-0`}
       >
         <motion.div
@@ -104,8 +104,8 @@ export default function HeroT1({ data, paleta, bannerActive = false }: Props) {
           viewport={{ once: true, margin: '-100px' }}
           className="flex flex-col items-start max-w-3xl w-full"
         >
-          {/* Eyebrow */}
-          <motion.div variants={itemVariants} className="flex items-center gap-3 mb-4 md:mb-5">
+          {/* Eyebrow: oculto en mobile y tablet, visible solo en desktop */}
+          <motion.div variants={itemVariants} className="hidden lg:flex items-center gap-3 mb-4 lg:mb-5">
             <span
               className="w-8 md:w-10 h-px"
               style={{ backgroundColor: accentColor }}
