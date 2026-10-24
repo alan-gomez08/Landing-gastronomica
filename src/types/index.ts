@@ -1,16 +1,64 @@
+export interface MenuItem {
+  id: string;
+  title: string;
+  description: string;
+  price: string;
+  imagePath: string;
+  category: string;
+  badge?: string;
+  isSoldOut?: boolean;
+}
+
+export interface CartItem extends MenuItem {
+  quantity: number;
+}
+
+export interface StatItem {
+  value: string;
+  label: string;
+}
+
+export interface TestimonialItem {
+  id?: string;
+  name: string;
+  rating?: number;
+  text?: string;
+  imagePath?: string;
+}
+
+export interface Palette {
+  fondoPrincipal: string;
+  fondoSecundario: string;
+  fondoCajas: string;
+  colorPrimario: string;
+  fondoBoton: string;
+  textoBoton: string;
+  textoPrimario: string;
+  textoSecundario: string;
+}
+
+export interface DeliveryZone {
+  name: string;
+  price: number;
+}
+
 export interface ClientData {
   templateId?: string;
   businessName: string;
-  config?: {
-    modulo?: string;
-    mostrarPrecios?: boolean;
-    agendaModo?: string;
-    agendaLink?: string;
-    [key: string]: any;
-  };
-  theme: {
+  theme?: {
     primaryColor: string;
     secondaryColor: string;
+  };
+  identidad?: {
+    colorPrincipal?: string;
+    [key: string]: any;
+  };
+  config?: {
+    ecommerceMode?: boolean;
+    mostrarPrecios?: boolean;
+    deliveryMethod?: 'delivery' | 'takeaway' | 'ambos' | string;
+    deliveryZones?: (string | DeliveryZone)[];
+    [key: string]: any;
   };
   nav?: {
     links?: { name: string; href: string }[];
@@ -44,25 +92,13 @@ export interface ClientData {
   menu: {
     title: string;
     categories: string[];
-    items: {
-      id: string;
-      title: string;
-      description: string;
-      price: string;
-      imagePath: string;
-      category: string;
-      colores?: string[];
-      talles?: string[];
-    }[];
+    items: MenuItem[];
   };
   stats: {
     title: string;
-    items: {
-      value: string;
-      label: string;
-    }[];
+    items: StatItem[];
   };
-  events: {
+  events?: {
     title: string;
     description: string;
     buttonText: string;
@@ -70,30 +106,9 @@ export interface ClientData {
     buttonUrl?: string;
     images?: string[];
   };
-  faqs?: {
-    question: string;
-    answer: string;
-  }[];
-  cta?: {
-    title: string;
-    description: string;
-    buttonText: string;
-    buttonType?: string;
-    buttonUrl?: string;
-  };
   testimonials: {
     title: string;
-    items: {
-      id?: string;
-      name: string;
-      text?: string;
-      content?: string;
-      role?: string;
-      imagePath?: string;
-      avatar?: string;
-      bgImage?: string;
-      rating?: number;
-    }[];
+    items: TestimonialItem[];
   };
   location: {
     title: string;

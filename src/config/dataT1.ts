@@ -1,6 +1,6 @@
 import type { ClientData } from '../types/index';
 
-export const configT1: any = {
+export const configT1: ClientData = {
   templateId: 'template-1',
   businessName: 'Tu Logo',
   theme: { primaryColor: '#ffffff', secondaryColor: '#111827' },
@@ -8,14 +8,20 @@ export const configT1: any = {
   config: {
     ecommerceMode: true, // Mantiene el carrito encendido
     mostrarPrecios: true, // 👇 AGREGÁS ESTO PARA OCULTAR LOS PRECIOS
-    deliveryMethod: 'ambos', 
-    deliveryZones: ['Ramos Mejía', 'San Justo', 'Villa Luzuriaga', 'Haedo'], 
+    deliveryMethod: 'ambos',
+    deliveryZones: [
+      { name: 'Retiro en Local', price: 0 },
+      { name: 'Ramos Mejía', price: 1500 },
+      { name: 'San Justo', price: 2000 },
+      { name: 'Haedo', price: 1800 },
+      { name: 'Morón', price: 2200 },
+    ],
   },
   
   hero: {
     title: 'Bienvenidos!\nPreparamos El\nMejor Sabor Para\nVos.',
     subtitle: 'Ingredientes frescos, recetas auténticas y una pasión genuina por la comida. ¡Descubrí tu nuevo plato favorito con nosotros!',
-    buttonText: 'Hacer Pedido por WhatsApp',
+    buttonText: 'Hacé Tu Pedido Ahora',
     images: { desktop: '/assets-t1/hero-desktop.webp', tablet: '/assets-t1/hero-tablet.webp', mobile: '/assets-t1/hero-mobile.webp' },
   },
   
@@ -31,28 +37,28 @@ export const configT1: any = {
     categories: ['Destacados', 'Hamburguesas', 'Tacos', 'Opciones Veggie', 'Bebidas'], 
     items: [
       // === DESTACADOS (AHORA CON PRECIOS REAELS) ===
-      { id: '1', title: 'Burger Clásica Doble', description: 'Doble carne, doble queso cheddar, lechuga, tomate y salsa especial.', price: '$7.900', category: 'Destacados', imagePath: '/assets-t1/menu-burger-doble.webp' },
-      { id: '2', title: 'Tacos al Pastor', description: 'Tres tacos de carne marinada, cebolla, cilantro fresco y un toque de lima.', price: '$6.500', category: 'Destacados', imagePath: '/assets-t1/menu-tacos.webp' },
+      { id: '1', title: 'Burger Clásica Doble', description: 'Doble carne, doble queso cheddar, lechuga, tomate y salsa especial.', price: '$7.900', category: 'Destacados', imagePath: '/assets-t1/menu-burger-doble.webp', badge: 'Más Vendido' },
+      { id: '2', title: 'Tacos al Pastor', description: 'Tres tacos de carne marinada, cebolla, cilantro fresco y un toque de lima.', price: '$6.500', category: 'Destacados', imagePath: '/assets-t1/menu-tacos.webp', badge: 'Picante' },
       { id: '3', title: 'Burger Crispy', description: 'Doble medallón frito extra crujiente, lechuga, tomate y nuestra salsa casera.', price: '$8.500', category: 'Destacados', imagePath: '/assets-t1/menu-burger-crispy.webp' },
       { id: '4', title: 'Combo Wrap', description: 'Wrap de carne asada con papas fritas y bebida a elección.', price: '$8.000', category: 'Destacados', imagePath: '/assets-t1/menu-wrap.webp' },
       { id: '5', title: 'Veggie Burger', description: 'Medallón de lentejas y quinoa, rúcula, tomate, cebolla morada y mayonesa vegana.', price: '$7.500', category: 'Destacados', imagePath: '/assets-t1/menu-burger-veggie.webp' },
       { id: '6', title: 'Sándwich Especial', description: 'Jamón, queso, huevo, tomate y lechuga en pan de masa madre tostado.', price: '$7.200', category: 'Destacados', imagePath: '/assets-t1/menu-sandwich.webp' },
       
       // === HAMBURGUESAS ===
-      { id: '7', title: 'Burger Clásica Doble', description: 'Doble carne, doble queso cheddar, lechuga, tomate y salsa especial.', price: '$7.900', category: 'Hamburguesas', imagePath: '/assets-t1/menu-burger-doble.webp' },
+      { id: '7', title: 'Burger Clásica Doble', description: 'Doble carne, doble queso cheddar, lechuga, tomate y salsa especial.', price: '$7.900', category: 'Hamburguesas', imagePath: '/assets-t1/menu-burger-doble.webp', badge: 'Más Vendido' },
       { id: '8', title: 'Burger Crispy', description: 'Doble medallón frito extra crujiente, lechuga, tomate y nuestra salsa casera.', price: '$8.500', category: 'Hamburguesas', imagePath: '/assets-t1/menu-burger-crispy.webp' },
-      { id: '9', title: 'Doble Cheddar & Bacon', description: 'Doble medallón smash, cuádruple cheddar derretido, panceta súper crocante y pan brioche tostado.', price: '$10.500', category: 'Hamburguesas', imagePath: '/assets-t1/burger-doble-cheddar.webp' },
+      { id: '9', title: 'Doble Cheddar & Bacon', description: 'Doble medallón smash, cuádruple cheddar derretido, panceta súper crocante y pan brioche tostado.', price: '$10.500', category: 'Hamburguesas', imagePath: '/assets-t1/burger-doble-cheddar.webp', badge: 'Más Vendido' },
       { id: '10', title: 'Burger Completa', description: 'Medallón de carne, queso cheddar, lechuga, tomate, aros de cebolla morada y mayonesa ahumada.', price: '$8.900', category: 'Hamburguesas', imagePath: '/assets-t1/burger-completa.webp' },
       { id: '11', title: 'Veggie Burger', description: 'Medallón de lentejas y quinoa, lechuga crespa, tomate fresco, cebolla morada y lactonesa de zanahoria.', price: '$8.200', category: 'Hamburguesas', imagePath: '/assets-t1/burger-veggie.webp' },
-      { id: '12', title: 'Crispy Chicken', description: 'Pechuga de pollo frita extra crujiente, queso dambo, lechuga fresca y mayonesa casera en pan de papa.', price: '$9.200', category: 'Hamburguesas', imagePath: '/assets-t1/burger-crispy-chicken.webp' },
+      { id: '12', title: 'Crispy Chicken', description: 'Pechuga de pollo frita extra crujiente, queso dambo, lechuga fresca y mayonesa casera en pan de papa.', price: '$9.200', category: 'Hamburguesas', imagePath: '/assets-t1/burger-crispy-chicken.webp', badge: 'Nuevo' },
 
       // === TACOS ===
-      { id: '13', title: 'Tacos al Pastor', description: 'Tres tacos de carne marinada, cebolla, cilantro fresco y un toque de lima.', price: '$6.500', category: 'Tacos', imagePath: '/assets-t1/menu-tacos.webp' },
+      { id: '13', title: 'Tacos al Pastor', description: 'Tres tacos de carne marinada, cebolla, cilantro fresco y un toque de lima.', price: '$6.500', category: 'Tacos', imagePath: '/assets-t1/menu-tacos.webp', badge: 'Picante' },
       { id: '14', title: 'Combo Wrap', description: 'Wrap de carne asada con papas fritas y bebida a elección.', price: '$8.000', category: 'Tacos', imagePath: '/assets-t1/menu-wrap.webp' },
       { id: '15', title: 'Tacos con Queso Fundido', description: 'Tortillas rellenas de carne picada sazonada, lechuga fresca y abundante salsa de queso cheddar derretido.', price: '$7.200', category: 'Tacos', imagePath: '/assets-t1/tacos-queso-fundido.webp' },
       { id: '16', title: 'Tacos Dorados Crocantes', description: 'Tortillas de maíz crujientes rellenas de carne, lechuga, queso rallado y nuestra salsa especial de la casa.', price: '$6.800', category: 'Tacos', imagePath: '/assets-t1/tacos-dorados-crocantes.webp' },
       { id: '17', title: 'Tacos de Asada y Palta', description: 'Tradicionales tacos de carne asada servidos con cebolla, cilantro fresco y abundantes láminas de palta.', price: '$7.500', category: 'Tacos', imagePath: '/assets-t1/tacos-asada-palta.webp' },
-      { id: '18', title: 'Tacos Estilo Callejero', description: 'Auténticos tacos mexicanos con carne fileteada, pico de gallo, cebolla morada y limas para acompañar.', price: '$6.000', category: 'Tacos', imagePath: '/assets-t1/tacos-estilo-callejero.webp' },
+      { id: '18', title: 'Tacos Estilo Callejero', description: 'Auténticos tacos mexicanos con carne fileteada, pico de gallo, cebolla morada y limas para acompañar.', price: '$6.000', category: 'Tacos', imagePath: '/assets-t1/tacos-estilo-callejero.webp', badge: 'Agotado', isSoldOut: true },
 
       // === OPCIONES VEGGIE ===
       { id: '19', title: 'Veggie Burger', description: 'Medallón de lentejas y quinoa, rúcula, tomate, cebolla morada y mayonesa vegana.', price: '$7.500', category: 'Opciones Veggie', imagePath: '/assets-t1/menu-burger-veggie.webp' },
