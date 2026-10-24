@@ -172,7 +172,7 @@ export default function Template1() {
         onOpenCart={() => setIsCartOpen(true)} 
         bannerActive={hasBanner}
       />
-      <HeroT1 data={liveData} paleta={paleta} />
+      <HeroT1 data={liveData} paleta={paleta} bannerActive={hasBanner} />
       <NosotrosT1 data={liveData} paleta={paleta} />
       
       {/* Le pasamos el catálogo sincronizado y las funciones de control al Menú */}

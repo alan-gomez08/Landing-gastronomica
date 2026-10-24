@@ -6,9 +6,10 @@ import type { ClientData } from '../types';
 interface Props {
   data: ClientData;
   paleta: any;
+  bannerActive?: boolean;
 }
 
-export default function HeroT1({ data, paleta }: Props) {
+export default function HeroT1({ data, paleta, bannerActive = false }: Props) {
   const [isCtaHovered, setIsCtaHovered] = useState(false);
   const [isMenuHovered, setIsMenuHovered] = useState(false);
 
@@ -69,7 +70,7 @@ export default function HeroT1({ data, paleta }: Props) {
             <motion.img
               src={desktopImage}
               alt="Atmósfera gastronómica"
-              className="w-full h-full object-cover object-[75%_center] md:object-center"
+              className="w-full h-full object-cover object-[75%_center] md:object-[center_bottom] lg:object-center"
               initial={{ opacity: 0, scale: 1.05 }}
               animate={{
                 opacity: 1,
@@ -90,8 +91,12 @@ export default function HeroT1({ data, paleta }: Props) {
         <div className="absolute inset-0 bg-black/20 pointer-events-none" />
       </div>
 
-      {/* ── Editorial Content Block (Anchored Bottom on Mobile, Centered on Desktop) ── */}
-      <div className="relative z-10 w-full max-w-[1250px] mx-auto px-6 sm:px-12 lg:px-16 h-full flex flex-col justify-end pb-12 pt-32 md:justify-center md:pb-0 md:pt-0">
+      {/* ── Editorial Content Block (Anchored Bottom on Mobile, Raised on Tablet, Centered on Desktop) ── */}
+      <div
+        className={`relative z-10 w-full max-w-[1250px] mx-auto px-6 sm:px-12 lg:px-16 h-full flex flex-col justify-end pb-12 pt-32 md:justify-start ${
+          bannerActive ? 'md:pt-36' : 'md:pt-28'
+        } md:pb-0 lg:justify-center lg:pt-0`}
+      >
         <motion.div
           variants={containerVariants}
           initial="hidden"
@@ -116,7 +121,7 @@ export default function HeroT1({ data, paleta }: Props) {
           {/* Headline */}
           <motion.h1
             variants={itemVariants}
-            className="text-4xl md:text-5xl lg:text-7xl xl:text-8xl font-bold leading-tight md:leading-[1.05] tracking-tighter text-white mb-4 md:mb-6 whitespace-pre-line text-balance"
+            className="text-4xl md:text-5xl lg:text-7xl xl:text-8xl font-bold leading-tight md:leading-[1.05] tracking-tighter text-white mb-4 md:mb-5 lg:mb-6 whitespace-pre-line text-balance"
             style={{ fontFamily: "'Space Grotesk', sans-serif" }}
           >
             {cleanTitle}
@@ -125,7 +130,7 @@ export default function HeroT1({ data, paleta }: Props) {
           {/* Subtitle / Description */}
           <motion.p
             variants={itemVariants}
-            className="text-neutral-400 text-base md:text-lg lg:text-xl font-normal leading-relaxed max-w-lg mb-8 md:mb-10"
+            className="text-neutral-400 text-base md:text-lg lg:text-xl font-normal leading-relaxed max-w-lg mb-8 md:mb-6 lg:mb-10"
             style={{ fontFamily: "'Inter', sans-serif" }}
           >
             {subtitle}
