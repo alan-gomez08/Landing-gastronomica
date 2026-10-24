@@ -20,6 +20,7 @@ export const configT1: ClientData = {
   
   hero: {
     title: 'Bienvenidos!\nPreparamos El\nMejor Sabor Para\nVos.',
+    titleTablet: 'Preparamos El Mejor Sabor\nPara Vos.',
     subtitle: 'Ingredientes frescos, recetas auténticas y una pasión genuina por la comida. ¡Descubrí tu nuevo plato favorito con nosotros!',
     buttonText: 'Hacé Tu Pedido Ahora',
     images: { desktop: '/assets-t1/hero-desktop.webp', tablet: '/assets-t1/hero-tablet.webp', mobile: '/assets-t1/hero-mobile.webp' },

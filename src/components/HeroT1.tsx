@@ -17,6 +17,24 @@ export default function HeroT1({ data, paleta, bannerActive = false }: Props) {
   const rawTitle = heroData?.title || configT1.hero.title;
   // Drop generic greeting to focus directly on value proposition
   const cleanTitle = rawTitle.replace(/^Bienvenidos!?\s*\n?/i, '').trim();
+
+  // Formato de 2 líneas para tablet (md: 768px - 1023px) para optimizar el alto y reposar sobre la zona oscura
+  const rawTitleTablet = heroData?.titleTablet || configT1.hero.titleTablet;
+  const tabletTitle = (
+    rawTitleTablet
+      ? rawTitleTablet
+      : cleanTitle.includes('\n')
+        ? (() => {
+            const words = cleanTitle.replace(/\n+/g, ' ').trim().split(/\s+/);
+            if (words.length >= 4) {
+              const splitIdx = Math.ceil(words.length * 0.6);
+              return `${words.slice(0, splitIdx).join(' ')}\n${words.slice(splitIdx).join(' ')}`;
+            }
+            return cleanTitle;
+          })()
+        : cleanTitle
+  ).replace(/^Bienvenidos!?\s*\n?/i, '').trim();
+
   const subtitle = heroData?.subtitle || configT1.hero.subtitle;
   const buttonText = heroData?.buttonText || configT1.hero.buttonText;
   const desktopImage = heroData?.images?.desktop || '/assets-t1/hero-desktop.webp';
@@ -121,10 +139,17 @@ export default function HeroT1({ data, paleta, bannerActive = false }: Props) {
           {/* Headline */}
           <motion.h1
             variants={itemVariants}
-            className="text-4xl md:text-5xl lg:text-7xl xl:text-8xl font-bold leading-tight md:leading-[1.05] tracking-tighter text-white mb-4 md:mb-5 lg:mb-6 whitespace-pre-line text-balance drop-shadow-[0_2px_14px_rgba(0,0,0,0.85)]"
+            className="text-4xl md:text-5xl lg:text-7xl xl:text-8xl font-bold leading-tight md:leading-[1.08] tracking-tighter text-white mb-4 md:mb-5 lg:mb-6 drop-shadow-[0_2px_14px_rgba(0,0,0,0.85)]"
             style={{ fontFamily: "'Space Grotesk', sans-serif" }}
           >
-            {cleanTitle}
+            {/* Mobile (< 768px) y Desktop (>= 1024px): formato de 3 líneas */}
+            <span className="block md:hidden lg:block whitespace-pre-line text-balance">
+              {cleanTitle}
+            </span>
+            {/* Tablet (768px - 1023px): formato de 2 líneas */}
+            <span className="hidden md:block lg:hidden whitespace-pre-line">
+              {tabletTitle}
+            </span>
           </motion.h1>
 
           {/* Subtitle / Description */}

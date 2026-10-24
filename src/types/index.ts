@@ -66,6 +66,7 @@ export interface ClientData {
   };
   hero: {
     title: string;
+    titleTablet?: string;
     subtitle: string;
     buttonText: string;
     buttonType?: string;
