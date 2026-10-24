@@ -70,7 +70,7 @@ export default function HeroT1({ data, paleta, bannerActive = false }: Props) {
             <motion.img
               src={desktopImage}
               alt="Atmósfera gastronómica"
-              className="w-full h-full object-cover object-[75%_center] md:object-[center_bottom] lg:object-center"
+              className="w-full h-full object-cover object-center md:object-[center_bottom] lg:object-center"
               initial={{ scale: 1.05 }}
               animate={{
                 scale: [1.05, 1, 1.05],
@@ -84,11 +84,11 @@ export default function HeroT1({ data, paleta, bannerActive = false }: Props) {
           </picture>
         </motion.div>
 
-        {/* ── Dynamic Gradient: Safe dark zone on left/bottom ── */}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A] via-[#0A0A0A]/80 to-transparent md:bg-gradient-to-r md:from-[#0A0A0A]/90 md:via-[#0A0A0A]/50 md:to-transparent w-full md:w-[85%] lg:w-[75%]" />
+        {/* ── Dynamic Gradient: Safe dark zone on bottom/left (Gradiente suave hacia abajo en mobile para resaltar texto sin tapar la imagen) ── */}
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A] from-5% via-[#0A0A0A]/50 via-45% to-transparent to-75% md:bg-gradient-to-r md:from-[#0A0A0A]/90 md:via-[#0A0A0A]/50 md:to-transparent w-full md:w-[85%] lg:w-[75%]" />
 
-        {/* Subtle ambient film tint */}
-        <div className="absolute inset-0 bg-black/20 pointer-events-none" />
+        {/* Subtle ambient film tint (solo visible en desktop para no oscurecer mobile) */}
+        <div className="hidden md:block absolute inset-0 bg-black/20 pointer-events-none" />
       </div>
 
       {/* ── Editorial Content Block (Anchored Bottom on Mobile, Raised on Tablet, Centered on Desktop) ── */}
@@ -121,7 +121,7 @@ export default function HeroT1({ data, paleta, bannerActive = false }: Props) {
           {/* Headline */}
           <motion.h1
             variants={itemVariants}
-            className="text-4xl md:text-5xl lg:text-7xl xl:text-8xl font-bold leading-tight md:leading-[1.05] tracking-tighter text-white mb-4 md:mb-5 lg:mb-6 whitespace-pre-line text-balance"
+            className="text-4xl md:text-5xl lg:text-7xl xl:text-8xl font-bold leading-tight md:leading-[1.05] tracking-tighter text-white mb-4 md:mb-5 lg:mb-6 whitespace-pre-line text-balance drop-shadow-[0_2px_14px_rgba(0,0,0,0.85)]"
             style={{ fontFamily: "'Space Grotesk', sans-serif" }}
           >
             {cleanTitle}
@@ -130,7 +130,7 @@ export default function HeroT1({ data, paleta, bannerActive = false }: Props) {
           {/* Subtitle / Description */}
           <motion.p
             variants={itemVariants}
-            className="text-neutral-400 text-base md:text-lg lg:text-xl font-normal leading-relaxed max-w-lg mb-8 md:mb-6 lg:mb-10"
+            className="text-neutral-300 md:text-neutral-400 text-base md:text-lg lg:text-xl font-normal leading-relaxed max-w-lg mb-8 md:mb-6 lg:mb-10 drop-shadow-[0_1px_8px_rgba(0,0,0,0.8)]"
             style={{ fontFamily: "'Inter', sans-serif" }}
           >
             {subtitle}
