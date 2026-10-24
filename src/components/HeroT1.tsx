@@ -19,9 +19,9 @@ export default function HeroT1({ data, paleta, bannerActive = false }: Props) {
   const cleanTitle = rawTitle.replace(/^Bienvenidos!?\s*\n?/i, '').trim();
   const subtitle = heroData?.subtitle || configT1.hero.subtitle;
   const buttonText = heroData?.buttonText || configT1.hero.buttonText;
-  const desktopImage = heroData?.images?.desktop || '/assets-t1/hero-desktop.webp';
-  const tabletImage = heroData?.images?.tablet || '/assets-t1/hero-tablet.webp';
-  const mobileImage = heroData?.images?.mobile || '/assets-t1/hero-mobile.webp';
+  const desktopImage = heroData?.images?.desktop || '/assets-t1/Hero-desktop.webp';
+  const tabletImage = heroData?.images?.tablet || '/assets-t1/Hero-tablet.webp';
+  const mobileImage = heroData?.images?.mobile || '/assets-t1/Hero-mobile.webp';
   const whatsapp = data?.contact?.whatsapp || configT1.contact.whatsapp;
   const accentColor = paleta?.colorPrimario || '#F59E0B';
 
@@ -62,23 +62,23 @@ export default function HeroT1({ data, paleta, bannerActive = false }: Props) {
       <div className="absolute inset-0 w-full h-full z-0 overflow-hidden">
         <motion.div style={{ y: parallaxY }} className="w-full h-full">
           <picture className="w-full h-full block">
-            {/* Mobile View (< 768px): hero-mobile.webp */}
+            {/* Mobile View (< 768px): Hero-mobile.webp */}
             <source media="(max-width: 767px)" srcSet={mobileImage} />
-            {/* Tablet View (768px - 1023px): hero-tablet.webp */}
+            {/* Tablet View (768px - 1023px): Hero-tablet.webp */}
             <source media="(max-width: 1023px)" srcSet={tabletImage} />
-            {/* Desktop View (>= 1024px): hero-desktop.webp */}
+            {/* Desktop View (>= 1024px): Hero-desktop.webp */}
             <motion.img
               src={desktopImage}
               alt="Atmósfera gastronómica"
               className="w-full h-full object-cover object-[75%_center] md:object-[center_bottom] lg:object-center"
-              initial={{ opacity: 0, scale: 1.05 }}
+              initial={{ scale: 1.05 }}
               animate={{
-                opacity: 1,
                 scale: [1.05, 1, 1.05],
               }}
               transition={{
-                opacity: { duration: 1.5, ease: 'easeOut' },
-                scale: { duration: 20, ease: 'easeInOut', repeat: Infinity },
+                duration: 20,
+                ease: 'easeInOut',
+                repeat: Infinity,
               }}
             />
           </picture>
