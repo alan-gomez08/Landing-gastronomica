@@ -18,7 +18,9 @@ export default function HeroT1({ data, paleta }: Props) {
   const cleanTitle = rawTitle.replace(/^Bienvenidos!?\s*\n?/i, '').trim();
   const subtitle = heroData?.subtitle || configT1.hero.subtitle;
   const buttonText = heroData?.buttonText || configT1.hero.buttonText;
-  const heroImage = heroData?.images?.desktop || configT1.hero.images.desktop;
+  const desktopImage = heroData?.images?.desktop || '/Hero-desktop.webp';
+  const tabletImage = heroData?.images?.tablet || '/Hero-tablet.webp';
+  const mobileImage = heroData?.images?.mobile || '/Hero-mobile.webp';
   const whatsapp = data?.contact?.whatsapp || configT1.contact.whatsapp;
   const accentColor = paleta?.colorPrimario || '#F59E0B';
 
@@ -58,20 +60,27 @@ export default function HeroT1({ data, paleta }: Props) {
       {/* ── Background Image with Parallax & Gentle Scale ── */}
       <div className="absolute inset-0 w-full h-full z-0 overflow-hidden">
         <motion.div style={{ y: parallaxY }} className="w-full h-full">
-          <motion.img
-            src={heroImage}
-            alt="Atmósfera gastronómica"
-            className="w-full h-full object-cover object-[75%_center] md:object-center"
-            initial={{ opacity: 0, scale: 1.05 }}
-            animate={{
-              opacity: 1,
-              scale: [1.05, 1, 1.05],
-            }}
-            transition={{
-              opacity: { duration: 1.5, ease: 'easeOut' },
-              scale: { duration: 20, ease: 'easeInOut', repeat: Infinity },
-            }}
-          />
+          <picture className="w-full h-full block">
+            {/* Mobile View (< 768px): Hero-mobile.webp */}
+            <source media="(max-width: 767px)" srcSet={mobileImage} />
+            {/* Tablet View (768px - 1023px): Hero-tablet.webp */}
+            <source media="(max-width: 1023px)" srcSet={tabletImage} />
+            {/* Desktop View (>= 1024px): Hero-desktop.webp */}
+            <motion.img
+              src={desktopImage}
+              alt="Atmósfera gastronómica"
+              className="w-full h-full object-cover object-[75%_center] md:object-center"
+              initial={{ opacity: 0, scale: 1.05 }}
+              animate={{
+                opacity: 1,
+                scale: [1.05, 1, 1.05],
+              }}
+              transition={{
+                opacity: { duration: 1.5, ease: 'easeOut' },
+                scale: { duration: 20, ease: 'easeInOut', repeat: Infinity },
+              }}
+            />
+          </picture>
         </motion.div>
 
         {/* ── Dynamic Gradient: Safe dark zone on left/bottom ── */}
