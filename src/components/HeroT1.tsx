@@ -19,9 +19,9 @@ export default function HeroT1({ data, paleta, bannerActive = false }: Props) {
   const cleanTitle = rawTitle.replace(/^Bienvenidos!?\s*\n?/i, '').trim();
   const subtitle = heroData?.subtitle || configT1.hero.subtitle;
   const buttonText = heroData?.buttonText || configT1.hero.buttonText;
-  const desktopImage = heroData?.images?.desktop || '/Hero-desktop.webp';
-  const tabletImage = heroData?.images?.tablet || '/Hero-tablet.webp';
-  const mobileImage = heroData?.images?.mobile || '/Hero-mobile.webp';
+  const desktopImage = heroData?.images?.desktop || '/assets-t1/hero-desktop.webp';
+  const tabletImage = heroData?.images?.tablet || '/assets-t1/hero-tablet.webp';
+  const mobileImage = heroData?.images?.mobile || '/assets-t1/hero-mobile.webp';
   const whatsapp = data?.contact?.whatsapp || configT1.contact.whatsapp;
   const accentColor = paleta?.colorPrimario || '#F59E0B';
 
@@ -61,12 +61,12 @@ export default function HeroT1({ data, paleta, bannerActive = false }: Props) {
       {/* ── Background Image with Parallax & Gentle Scale ── */}
       <div className="absolute inset-0 w-full h-full z-0 overflow-hidden">
         <motion.div style={{ y: parallaxY }} className="w-full h-full">
-          <picture className="w-full h-full block md:scale-[0.80] md:origin-bottom lg:scale-100 lg:origin-center transition-transform duration-500">
-            {/* Mobile View (< 768px): Hero-mobile.webp */}
+          <picture className="w-full h-full block">
+            {/* Mobile View (< 768px): hero-mobile.webp */}
             <source media="(max-width: 767px)" srcSet={mobileImage} />
-            {/* Tablet View (768px - 1023px): Hero-tablet.webp */}
+            {/* Tablet View (768px - 1023px): hero-tablet.webp */}
             <source media="(max-width: 1023px)" srcSet={tabletImage} />
-            {/* Desktop View (>= 1024px): Hero-desktop.webp */}
+            {/* Desktop View (>= 1024px): hero-desktop.webp */}
             <motion.img
               src={desktopImage}
               alt="Atmósfera gastronómica"
@@ -94,7 +94,7 @@ export default function HeroT1({ data, paleta, bannerActive = false }: Props) {
       {/* ── Editorial Content Block (Anchored Bottom on Mobile, Raised on Tablet, Centered on Desktop) ── */}
       <div
         className={`relative z-10 w-full max-w-[1250px] mx-auto px-6 sm:px-12 lg:px-16 h-full flex flex-col justify-end pb-12 pt-32 md:justify-start ${
-          bannerActive ? 'md:pt-32' : 'md:pt-24'
+          bannerActive ? 'md:pt-44' : 'md:pt-36'
         } md:pb-0 lg:justify-center lg:pt-0`}
       >
         <motion.div
