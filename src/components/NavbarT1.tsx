@@ -172,29 +172,8 @@ export default function NavbarT1({ data, paleta, cart = [], onOpenCart, bannerAc
           )}
         </div>
 
-        {/* Mobile Right: Ícono de Carrito con Badge Numérico Amarillo + Hamburguesa */}
-        <div className="flex md:hidden items-center gap-2">
-          {onOpenCart && (
-            <button
-              type="button"
-              onClick={onOpenCart}
-              className="relative p-2.5 rounded-full border border-white/15 bg-white/[0.06] text-white active:scale-95 transition-all shadow-sm cursor-pointer"
-              aria-label={`Ver carrito: ${totalItems} productos`}
-            >
-              <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
-              </svg>
-
-              {totalItems > 0 && (
-                <span
-                  className="absolute -top-1 -right-1 min-w-[19px] h-[19px] px-1 rounded-full flex items-center justify-center font-black text-[10px] text-black shadow-md"
-                  style={{ backgroundColor: paleta.colorPrimario }}
-                >
-                  {totalItems}
-                </span>
-              )}
-            </button>
-          )}
+        {/* Mobile Right: Solo Hamburguesa para navegación limpia */}
+        <div className="flex md:hidden items-center">
 
           <button 
             onClick={() => setIsOpen(!isOpen)}

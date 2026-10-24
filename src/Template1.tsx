@@ -205,37 +205,100 @@ export default function Template1() {
         onClose={() => setIsCartOpen(false)}
       />
 
-      {/* Barra Inferior Fija (Sticky Bottom Bar) para Mobile en Tiempo Real */}
+      {/* Barra Flotante Inferior Elegante (Floating Dock / Sticky Bar) para Mobile */}
       <AnimatePresence>
         {totalItems > 0 && !isCartOpen && (
           <motion.div
-            initial={{ y: 100, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            exit={{ y: 100, opacity: 0 }}
-            transition={{ type: 'spring', damping: 26, stiffness: 320 }}
-            className="md:hidden fixed bottom-0 left-0 right-0 z-40 px-4 py-3 bg-[#0A0A0A]/95 backdrop-blur-xl border-t border-white/10 shadow-[0_-12px_40px_rgba(0,0,0,0.85)] pb-[max(0.75rem,env(safe-area-inset-bottom))]"
+            initial={{ y: 80, opacity: 0, scale: 0.95 }}
+            animate={{ y: 0, opacity: 1, scale: 1 }}
+            exit={{ y: 80, opacity: 0, scale: 0.95 }}
+            transition={{ type: 'spring', damping: 25, stiffness: 350 }}
+            className="md:hidden fixed bottom-[max(0.85rem,env(safe-area-inset-bottom))] left-3 right-3 z-40 max-w-md mx-auto"
           >
-            <div className="flex items-center justify-between gap-3 max-w-md mx-auto">
-              <div className="flex flex-col pl-1">
-                <span className="text-[10.5px] uppercase tracking-wider text-neutral-400 font-semibold">
-                  Subtotal ({totalItems} {totalItems === 1 ? 'ítem' : 'ítems'})
-                </span>
-                <span className="text-lg font-black text-white" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
-                  {formatPrice(subtotal)}
-                </span>
+            <div
+              onClick={() => setIsCartOpen(true)}
+              className="relative flex items-center justify-between gap-3 p-2.5 sm:p-3 rounded-2xl bg-[#111113]/92 backdrop-blur-2xl border border-white/[0.12] shadow-[0_16px_45px_rgba(0,0,0,0.9),0_0_25px_rgba(245,158,11,0.12)] cursor-pointer active:scale-[0.985] transition-all overflow-hidden"
+              style={{
+                fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Text', 'SF Pro Display', 'Inter', sans-serif",
+              }}
+            >
+              {/* Reflejo de luz superior refinado (specular sheen) */}
+              <div className="absolute inset-x-6 top-0 h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent pointer-events-none" />
+
+              {/* Resplandor ambiental de acento en el fondo */}
+              <div
+                className="absolute -left-6 -top-6 w-28 h-28 rounded-full blur-2xl pointer-events-none opacity-20"
+                style={{ backgroundColor: paleta.colorPrimario }}
+              />
+
+              {/* Lado izquierdo: Ícono refinado con badge + info de subtotal */}
+              <div className="relative z-10 flex items-center gap-3 min-w-0 pl-1">
+                {/* Contenedor del ícono con Badge flotante */}
+                <div className="relative w-10 h-10 rounded-xl bg-white/[0.06] border border-white/10 flex items-center justify-center shrink-0">
+                  <svg
+                    className="w-5 h-5 text-white/90"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    strokeWidth={1.8}
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25c-.669 0-1.189-.578-1.119-1.243l1.263-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007z"
+                    />
+                  </svg>
+                  <span
+                    className="absolute -top-1.5 -right-1.5 min-w-[19px] h-[19px] px-1 rounded-full flex items-center justify-center font-black text-[10px] text-black shadow-md"
+                    style={{ backgroundColor: paleta.colorPrimario }}
+                  >
+                    {totalItems}
+                  </span>
+                </div>
+
+                {/* Subtotal y detalle de ítems con tipografía nativa SF Pro / Space Grotesk */}
+                <div className="flex flex-col min-w-0">
+                  <span className="text-[10px] uppercase font-bold tracking-wider text-neutral-400 truncate">
+                    {totalItems === 1 ? '1 producto seleccionado' : `${totalItems} productos seleccionados`}
+                  </span>
+                  <span
+                    className="text-[17px] font-black text-white tracking-tight leading-tight"
+                    style={{
+                      fontFamily: "'Space Grotesk', -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif",
+                    }}
+                  >
+                    {formatPrice(subtotal)}
+                  </span>
+                </div>
               </div>
 
-              <button
-                type="button"
-                onClick={() => setIsCartOpen(true)}
-                className="flex items-center gap-2 px-5 py-2.5 rounded-full font-bold text-sm text-black shadow-[0_4px_20px_rgba(245,158,11,0.4)] active:scale-95 transition-all cursor-pointer"
-                style={{ backgroundColor: paleta.colorPrimario, fontFamily: "'Space Grotesk', sans-serif" }}
-              >
-                <svg className="w-4 h-4 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2.2}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
-                </svg>
-                <span>Ver Carrito</span>
-              </button>
+              {/* Lado derecho: Botón CTA magnético con flecha */}
+              <div className="relative z-10 flex items-center shrink-0">
+                <button
+                  type="button"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setIsCartOpen(true);
+                  }}
+                  className="flex items-center gap-1.5 px-4 py-2.5 rounded-full font-bold text-xs sm:text-[13px] text-black shadow-[0_4px_18px_rgba(245,158,11,0.35)] active:scale-95 transition-transform cursor-pointer"
+                  style={{
+                    backgroundColor: paleta.colorPrimario,
+                    fontFamily: "'Space Grotesk', -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif",
+                  }}
+                  aria-label="Abrir carrito y confirmar pedido"
+                >
+                  <span>Ver Carrito</span>
+                  <svg
+                    className="w-3.5 h-3.5 text-black"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    strokeWidth={2.4}
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                  </svg>
+                </button>
+              </div>
             </div>
           </motion.div>
         )}
