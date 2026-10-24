@@ -67,7 +67,7 @@ export default function NavbarT1({ data, paleta, cart = [], onOpenCart, bannerAc
 
   return (
     <nav 
-      className={`fixed left-0 w-full z-50 backdrop-blur-xl transition-all ${bannerActive ? 'top-10' : 'top-0'}`}
+      className={`fixed left-0 w-full z-50 backdrop-blur-xl transition-all duration-300 ${bannerActive ? 'top-0 md:top-10' : 'top-0'}`}
       style={{ 
         backgroundColor: 'rgba(10,10,10,0.85)',
         borderBottom: '1px solid rgba(255,255,255,0.07)' 
@@ -190,7 +190,7 @@ export default function NavbarT1({ data, paleta, cart = [], onOpenCart, bannerAc
 
       {/* Mobile Drawer Menu */}
       <div 
-        className={`md:hidden absolute top-20 left-0 w-full transition-all duration-300 ${isOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-4'}`}
+        className={`md:hidden absolute ${bannerActive ? 'top-[120px]' : 'top-20'} left-0 w-full transition-all duration-300 ${isOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-4'}`}
         style={{ 
           backgroundColor: paleta.fondoSecundario,
           borderBottom: `1px solid ${paleta.textoSecundario}33`

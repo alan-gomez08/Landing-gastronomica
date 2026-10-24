@@ -33,7 +33,7 @@ export const TopBanner: React.FC<TopBannerProps> = ({ bannerText, onOpenCart, on
     <aside
       role="banner"
       aria-label="Promoción destacada"
-      className="fixed top-0 left-0 right-0 z-[60] h-10 px-4 bg-[#0A0A0A]/95 backdrop-blur-md border-b border-white/[0.08] shadow-sm flex items-center justify-between select-none"
+      className="fixed top-20 md:top-0 left-0 right-0 z-40 md:z-[60] h-10 px-4 bg-[#0A0A0A]/95 backdrop-blur-md border-b border-white/[0.08] shadow-sm flex items-center justify-between select-none transition-all duration-300"
     >
       <div className="flex-1 flex items-center justify-center gap-2.5 text-center truncate max-w-[1200px] mx-auto">
         {/* Marcador refinado de acento */}
